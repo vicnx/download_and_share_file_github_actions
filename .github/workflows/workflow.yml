@@ -1,0 +1,29 @@
+name: GET DOCUMENT
+
+on:
+  schedule:
+   - cron: '10 23 * * *'
+
+jobs:
+  download_and_share_file:
+    name: download_and_share_file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Download document and change on index.html
+        uses: ./.github/actions/get_document
+      - name: Push changes to repository
+        run: |
+          git config user.name vicnx
+          git config user.email andanivicente@gmail.com
+          git add .
+          git commit -m "Modificado index.html con nuevo enlace"
+          git push origin download_and_share_file
+      - name: Deploy to andanivicente_download.surge.sh
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          domain: "andanivicente_download_master.surge.sh"
+          project: "."
+          login: ${{ secrets.SURGE_EMAIL }}
+          token: ${{ secrets.SURGE_TOKEN }}

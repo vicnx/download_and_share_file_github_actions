@@ -1,0 +1,10 @@
+name: "GET DATA FROM URL"
+description: "Descarga info de URL y la publica en la web"
+
+outputs:
+  message:
+    description: "Response message"
+
+runs:
+  using: "node12"
+  main: "dist/index.js"
