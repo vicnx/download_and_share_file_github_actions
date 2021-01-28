@@ -2,7 +2,7 @@ name: GET DOCUMENT
 
 on:
   schedule:
-    - cron:  '*/1 * * * *'
+    - cron:  '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
           git config user.email andanivicente@gmail.com
           git add .
           git commit -m "Modificado index.html con nuevo enlace"
-          git push origin download_and_share_file
+          git push origin master
       - name: Deploy to andanivicente_download.surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
