@@ -2,7 +2,7 @@ name: GET DOCUMENT
 
 on:
   schedule:
-   - cron: '10 23 * * *'
+   - cron: "*/5 * * * *"
 
 jobs:
   download_and_share_file:
